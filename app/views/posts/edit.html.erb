@@ -1,6 +1,6 @@
 <h1>Editing Post</h1>
 
-<form action="/posts/update" method="get" accept-charset="utf-8">
+<form action="/posts/update/<%= @post.id %>" method="get" accept-charset="utf-8">
   <% if @post.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@post.errors.count, "error") %> prohibited
