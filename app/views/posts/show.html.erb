@@ -8,4 +8,6 @@
   <%= @post.body %>
 </p>
 
-<a href="posts/">posts/</a>
+<!-- href 에 들어 가는 경로는 앞에 /가 붙어야 절대경로로 인식됩니다 -->
+<a href="/posts/">/posts/</a>
+<a href="/posts/edit/<%= @post.id %>">/posts/edit/<%= @post.id %></a>
