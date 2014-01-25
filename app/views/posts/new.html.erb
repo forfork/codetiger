@@ -1,6 +1,20 @@
 <h1>New Post</h1>
 
 <form action="/posts/create" method="get" accept-charset="utf-8">
+  <%#create action에서 @post을 이 new.html.erb로 넘김, 따라서 @post가 new.html.erb 에 필요하게됨%>
+  <%#아래 라인에서 @post을 사용함. 그런데, 기존 new controller에는 이 변수가 없음%>
+  <%#따라서, 에러를 방지하기 위해 new action에도 @post = Post.new을 추가해둠%>
+  <% if @post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+      this post from being saved:</h2>
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
   title <br />
   <input type="text" name="title"><br />
   body <br />
