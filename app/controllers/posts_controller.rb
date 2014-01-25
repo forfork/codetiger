@@ -25,4 +25,16 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
+  def update
+    @post = Post.find(params[:id])
+
+    @post.title = params[:title]
+    @post.body = params[:body]
+
+    if @post.save
+      redirect_to "/posts"
+    else
+      render :edit
+    end
+  end
 end
