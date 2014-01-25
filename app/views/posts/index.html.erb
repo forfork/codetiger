@@ -1,5 +1,6 @@
 <h1>Listing posts</h1>
 
+<a href="/posts/new">/posts/new</a>
 <table>
   <tr>
     <th>Title</th>
@@ -10,6 +11,7 @@
     <tr>
       <td><%= post.title %></td>
       <td><%= post.body %></td>
+      <td><a href="/posts/show/<%= post.id %>">show</a></td>
     </tr>
   <% end %>
 </table>
