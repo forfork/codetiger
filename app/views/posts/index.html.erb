@@ -13,6 +13,7 @@
       <td><%= post.body %></td>
       <td><a href="/posts/show/<%= post.id %>">show</a></td>
       <td><a href="/posts/edit/<%= post.id %>">edit</a></td>
+      <td><a href="/posts/destroy/<%= post.id %>" data-confirm="are you sure?">destroy</a></td>
     </tr>
   <% end %>
 </table>
