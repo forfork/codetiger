@@ -4,17 +4,7 @@
   <%# @post라는 instance에 bind된 form_for 입니다. rails가 제공하는 form을 사용하면 csrf 공격 방지 토큰을 자동으로 만들어줍니다.%>
   <%# 뿐만 아니라, controller 단에서 strong parameter을 쓰는 것도 편해집니다 %>
   <%# form_for 뿐만 아니라 form_tag도 있으니 사용해보세요 %>
-  <% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
-      this post from being saved:</h2>
-    <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-  <% end %>
+  <%= render :partial => "error_log" %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>

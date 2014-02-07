@@ -1,17 +1,8 @@
 <h1>Editing Post</h1>
 
 <form action="/posts/update/<%= @post.id %>" method="get" accept-charset="utf-8">
-  <% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
-      this post from being saved:</h2>
-    <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-  <% end %>
+  <%# partial: "" 과 :partial => ""은 동일합니다. hash을 공부하세요. %>
+  <%= render partial: "error_log" %>
   title <br />
   <input type="text" name="title" value="<%= @post.title %>"><br />
   body <br />
