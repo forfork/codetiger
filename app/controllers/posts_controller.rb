@@ -8,10 +8,13 @@ class PostsController < ApplicationController
     @post = Post.new
   end
   def create
-    @post = Post.new
-    @post.title = params[:title]
-    @post.body = params[:body]
-    # Post 모델의 validates을 통과하면 /posts URL로 가고 아니면 다시 new 페이지가 나옴
+    # @post = Post.new
+    # @post.title = params[:title]
+    # @post.body = params[:body]
+
+    # strong parameter을 활용하여 11~13 line을 refactoring한 코드
+    @post = Post.new(post_params) # params[:post])
+
     if @post.save
       redirect_to "/posts"
     else
@@ -43,4 +46,10 @@ class PostsController < ApplicationController
 
     redirect_to "/posts"
   end
+
+private
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
+
 end
