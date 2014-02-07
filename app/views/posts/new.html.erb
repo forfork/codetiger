@@ -1,9 +1,9 @@
 <h1>New Post</h1>
 
-<form action="/posts/create" method="get" accept-charset="utf-8">
-  <%#create action에서 @post을 이 new.html.erb로 넘김, 따라서 @post가 new.html.erb 에 필요하게됨%>
-  <%#아래 라인에서 @post을 사용함. 그런데, 기존 new controller에는 이 변수가 없음%>
-  <%#따라서, 에러를 방지하기 위해 new action에도 @post = Post.new을 추가해둠%>
+<%= form_for @post, url: "/posts/create", method: "get" do |f| %>
+  <%# @post라는 instance에 bind된 form_for 입니다. rails가 제공하는 form을 사용하면 csrf 공격 방지 토큰을 자동으로 만들어줍니다.%>
+  <%# 뿐만 아니라, controller 단에서 strong parameter을 쓰는 것도 편해집니다 %>
+  <%# form_for 뿐만 아니라 form_tag도 있으니 사용해보세요 %>
   <% if @post.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@post.errors.count, "error") %> prohibited
@@ -15,11 +15,17 @@
     </ul>
   </div>
   <% end %>
-  title <br />
-  <input type="text" name="post[title]"><br />
-  body <br />
-  <textarea name="post[body]" rows="8" cols="40"></textarea>
-  <input type="submit">
-</form>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
 
 <a href="/posts">/posts</a>
