@@ -19,6 +19,29 @@
 
 <h2>Add Comments</h2>
 
+<p> <%= text_field_tag 'comment[commenter]' %></p>
+<p> <%= text_area_tag 'comment[body]' %></p>
+<%= hidden_field_tag 'post_id', @post.id %>
+<button type="submit" onclick="new_comment();">댓글 남기기</button>
+
 <!-- href 에 들어 가는 경로는 앞에 /가 붙어야 절대경로로 인식됩니다 -->
 <a href="/posts/">/posts/</a>
 <a href="/posts/edit/<%= @post.id %>">/posts/edit/<%= @post.id %></a>
+
+<script type="text/javascript" charset="utf-8">
+  function new_comment() {
+    /* 범준 혼자 놀기 */
+    $.ajax({
+      url: "/comment",
+      type: "post",
+      data: {
+        ct: $("#comment_commenter").val(),
+        bd: $("#comment_body").val(),
+        post_id: $("#post_id").val()
+      },
+      success: function(data) {
+      $(".comment_box").append("<li> <strong>" + data.ctt + "</strong>" + data.bdd +  "</li>")
+      }
+    });
+  }
+</script>
