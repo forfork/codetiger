@@ -8,6 +8,17 @@
   <%= @post.body %>
 </p>
 
+<div class="comment_box">
+  <h2>Comments (<%= @post.comments.size %>)</h2>
+  <ul style="list-style: none;">
+  <% @post.comments.each do |comment| %>
+   <li><strong><%= comment.commenter %></strong>: <%= comment.body %></li>
+  <% end %>
+  </ul>
+</div>
+
+<h2>Add Comments</h2>
+
 <!-- href 에 들어 가는 경로는 앞에 /가 붙어야 절대경로로 인식됩니다 -->
 <a href="/posts/">/posts/</a>
 <a href="/posts/edit/<%= @post.id %>">/posts/edit/<%= @post.id %></a>
