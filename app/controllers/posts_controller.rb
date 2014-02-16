@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
+  before_filter :verify, only: [:show]
   def index
+    @user = User.new
     @posts = Post.all
   end
   def new

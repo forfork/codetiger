@@ -1,6 +1,13 @@
-<h3>Sign in</h3>
+<% if session[:user_id].nil? %>
+  <h3>Sign in</h3>
+  <%= form_for @user, url: "/users/sign_in",method: :post do |f| %>
+    <%= f.text_field "username"  %>
+    <%= f.password_field "password"  %>
+    <%= f.submit %>
+    <hr />
+  <% end %>
+<% end %>
 
-<hr />
 <h1>Listing posts</h1>
 
 <a href="/posts/new">/posts/new</a>
